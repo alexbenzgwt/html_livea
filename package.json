@@ -54,6 +54,10 @@
       },
       "scripts": {
           "dev": "vite",
-          "build": "vite build"
-      }
+          "build": "vite build",
+            "predeploy": "npm run build",
+  "deploy": "gh-pages -d build"
+      },
+      "homepage": "https://github.com/godavariwavetech/react_test_live"
+
   }
