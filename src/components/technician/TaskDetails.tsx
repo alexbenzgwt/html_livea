@@ -2,25 +2,22 @@ import React, { useState } from 'react';
 import { Button } from '../ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 import { ArrowLeft, MapPin, Navigation, FileText, Wrench, Package, AlertCircle, MessageSquare } from 'lucide-react';
+import { Link } from "react-router-dom";
 
-interface TaskDetailsProps {
-  onBack: () => void;
-  onNavigate: (screen: string) => void;
-}
-
-export function TaskDetails({ onBack, onNavigate }: TaskDetailsProps) {
+export function TaskDetails() {
   const [checkedIn, setCheckedIn] = useState(false);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 pb-6">
       {/* Header */}
       <div className="bg-gradient-to-r from-[#1e3a8a] to-[#2563eb] px-6 pt-12 pb-8 rounded-b-[32px] shadow-xl">
-        <button
-          onClick={onBack}
-          className="mb-6 w-12 h-12 bg-white/20 backdrop-blur-lg rounded-xl flex items-center justify-center hover:bg-white/30 transition-colors"
-        >
-          <ArrowLeft className="w-6 h-6 text-white" />
-        </button>
+        <Link to="/technician/task-list">
+          <button
+            className="mb-6 w-12 h-12 bg-white/20 backdrop-blur-lg rounded-xl flex items-center justify-center hover:bg-white/30 transition-colors"
+          >
+            <ArrowLeft className="w-6 h-6 text-white" />
+          </button>
+        </Link>
         <p className="text-white/80 mb-1">PRJ-2025-001</p>
         <h1 className="text-white mb-2">Sunrise Residency</h1>
       </div>
@@ -143,13 +140,14 @@ export function TaskDetails({ onBack, onNavigate }: TaskDetailsProps) {
               <p className="text-gray-600 text-center py-8">
                 Stage checklist available in Stage Progress screen
               </p>
-              <Button
-                onClick={() => onNavigate('stageprogress')}
-                className="w-full bg-[#2563eb] hover:bg-[#1e40af] rounded-xl h-12"
-              >
-                <Wrench className="w-4 h-4 mr-2" />
-                Open Stage Progress
-              </Button>
+              <Link to="/technician/stage-progress">
+                <Button
+                  className="w-full bg-[#2563eb] hover:bg-[#1e40af] rounded-xl h-12"
+                >
+                  <Wrench className="w-4 h-4 mr-2" />
+                  Open Stage Progress
+                </Button>
+              </Link>
             </div>
           </TabsContent>
 
@@ -158,13 +156,14 @@ export function TaskDetails({ onBack, onNavigate }: TaskDetailsProps) {
               <p className="text-gray-600 text-center py-8">
                 Request materials and parts for this project
               </p>
-              <Button
-                onClick={() => onNavigate('materialrequest')}
-                className="w-full bg-[#2563eb] hover:bg-[#1e40af] rounded-xl h-12"
-              >
-                <Package className="w-4 h-4 mr-2" />
-                Material Request
-              </Button>
+              <Link to="/technician/material-request">
+                <Button
+                  className="w-full bg-[#2563eb] hover:bg-[#1e40af] rounded-xl h-12"
+                >
+                  <Package className="w-4 h-4 mr-2" />
+                  Material Request
+                </Button>
+              </Link>
             </div>
           </TabsContent>
 
@@ -173,13 +172,14 @@ export function TaskDetails({ onBack, onNavigate }: TaskDetailsProps) {
               <p className="text-gray-600 text-center py-8">
                 Report issues or pause work
               </p>
-              <Button
-                onClick={() => onNavigate('issuereport')}
-                className="w-full bg-orange-500 hover:bg-orange-600 rounded-xl h-12"
-              >
-                <AlertCircle className="w-4 h-4 mr-2" />
-                Report Issue
-              </Button>
+              <Link to="/technician/issue-report">
+                <Button
+                  className="w-full bg-orange-500 hover:bg-orange-600 rounded-xl h-12"
+                >
+                  <AlertCircle className="w-4 h-4 mr-2" />
+                  Report Issue
+                </Button>
+              </Link>
             </div>
           </TabsContent>
 
@@ -188,13 +188,14 @@ export function TaskDetails({ onBack, onNavigate }: TaskDetailsProps) {
               <p className="text-gray-600 text-center py-8">
                 Chat with admin and support team
               </p>
-              <Button
-                onClick={() => onNavigate('chat')}
-                className="w-full bg-[#2563eb] hover:bg-[#1e40af] rounded-xl h-12"
-              >
-                <MessageSquare className="w-4 h-4 mr-2" />
-                Open Chat
-              </Button>
+              <Link to="/technician/chat-support">
+                <Button
+                  className="w-full bg-[#2563eb] hover:bg-[#1e40af] rounded-xl h-12"
+                >
+                  <MessageSquare className="w-4 h-4 mr-2" />
+                  Open Chat
+                </Button>
+              </Link>
             </div>
           </TabsContent>
         </Tabs>

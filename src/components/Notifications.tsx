@@ -1,9 +1,6 @@
 import React from 'react';
 import { ArrowLeft, Bell, Calendar, CheckCircle2, AlertCircle, IndianRupee } from 'lucide-react';
-
-interface NotificationsProps {
-  onBack: () => void;
-}
+import { Link } from "react-router-dom";
 
 const notifications = [
   {
@@ -74,17 +71,18 @@ const notifications = [
   },
 ];
 
-export function Notifications({ onBack }: NotificationsProps) {
+export function Notifications() {
   return (
     <div className="min-h-screen bg-[#F8F9FA] pb-6">
       {/* Header */}
       <div className="bg-gradient-to-r from-[#005EB8] to-[#0077D4] px-6 pt-12 pb-8 rounded-b-[32px] shadow-lg">
-        <button
-          onClick={onBack}
-          className="mb-6 w-10 h-10 bg-white/20 backdrop-blur-lg rounded-xl flex items-center justify-center hover:bg-white/30 transition-colors"
-        >
-          <ArrowLeft className="w-5 h-5 text-white" />
-        </button>
+        <Link to="/home">
+          <button
+            className="mb-6 w-10 h-10 bg-white/20 backdrop-blur-lg rounded-xl flex items-center justify-center hover:bg-white/30 transition-colors"
+          >
+            <ArrowLeft className="w-5 h-5 text-white" />
+          </button>
+        </Link>
         <div className="flex items-center gap-3 mb-2">
           <div className="w-12 h-12 bg-white/20 backdrop-blur-lg rounded-xl flex items-center justify-center">
             <Bell className="w-6 h-6 text-white" />

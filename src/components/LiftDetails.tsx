@@ -2,24 +2,22 @@ import React from 'react';
 import { Button } from './ui/button';
 import { Progress } from './ui/progress';
 import { ArrowLeft, Building2, Calendar, MapPin, Shield, Navigation } from 'lucide-react';
+import { Link } from "react-router-dom";
 
-interface LiftDetailsProps {
-  onBack: () => void;
-}
-
-export function LiftDetails({ onBack }: LiftDetailsProps) {
+export function LiftDetails() {
   const progressValue = 80;
 
   return (
     <div className="min-h-screen bg-[#F8F9FA] pb-6">
       {/* Header */}
       <div className="bg-gradient-to-r from-[#005EB8] to-[#0077D4] px-6 pt-12 pb-8 rounded-b-[32px] shadow-lg">
-        <button
-          onClick={onBack}
-          className="mb-6 w-10 h-10 bg-white/20 backdrop-blur-lg rounded-xl flex items-center justify-center hover:bg-white/30 transition-colors"
-        >
-          <ArrowLeft className="w-5 h-5 text-white" />
-        </button>
+        <Link to="/home">
+          <button
+            className="mb-6 w-10 h-10 bg-white/20 backdrop-blur-lg rounded-xl flex items-center justify-center hover:bg-white/30 transition-colors"
+          >
+            <ArrowLeft className="w-5 h-5 text-white" />
+          </button>
+        </Link>
         <h1 className="text-white mb-2">PLX-2000 Hydraulic</h1>
         <p className="text-white/80">Lift Installation Details</p>
       </div>

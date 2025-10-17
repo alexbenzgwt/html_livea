@@ -2,10 +2,7 @@ import React, { useState } from 'react';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { ArrowLeft, Send, Mic, User, Shield } from 'lucide-react';
-
-interface ChatSupportProps {
-  onBack: () => void;
-}
+import { Link } from "react-router-dom";
 
 const messages = [
   {
@@ -42,7 +39,7 @@ const messages = [
 
 const quickReplies = ['On Site', 'Need Help', 'Part Received'];
 
-export function ChatSupport({ onBack }: ChatSupportProps) {
+export function ChatSupport() {
   const [message, setMessage] = useState('');
 
   return (
@@ -50,12 +47,13 @@ export function ChatSupport({ onBack }: ChatSupportProps) {
       {/* Header */}
       <div className="bg-gradient-to-r from-[#1e3a8a] to-[#2563eb] px-6 pt-12 pb-6 rounded-b-[32px] shadow-xl">
         <div className="flex items-center gap-4">
-          <button
-            onClick={onBack}
-            className="w-12 h-12 bg-white/20 backdrop-blur-lg rounded-xl flex items-center justify-center hover:bg-white/30 transition-colors"
-          >
-            <ArrowLeft className="w-6 h-6 text-white" />
-          </button>
+          <Link to="/technician/task-details">
+            <button
+              className="w-12 h-12 bg-white/20 backdrop-blur-lg rounded-xl flex items-center justify-center hover:bg-white/30 transition-colors"
+            >
+              <ArrowLeft className="w-6 h-6 text-white" />
+            </button>
+          </Link>
           <div className="flex items-center gap-3 flex-1">
             <div className="w-12 h-12 bg-white/20 backdrop-blur-lg rounded-full flex items-center justify-center">
               <Shield className="w-6 h-6 text-white" />

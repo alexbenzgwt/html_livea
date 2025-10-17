@@ -2,10 +2,7 @@ import React, { useState } from 'react';
 import { Button } from '../ui/button';
 import { Textarea } from '../ui/textarea';
 import { ArrowLeft, Zap, Wrench, Package, UserX, MoreHorizontal, Camera, Send } from 'lucide-react';
-
-interface IssueReportProps {
-  onBack: () => void;
-}
+import { Link } from "react-router-dom";
 
 const issueTypes = [
   {
@@ -40,7 +37,7 @@ const issueTypes = [
   },
 ];
 
-export function IssueReport({ onBack }: IssueReportProps) {
+export function IssueReport() {
   const [selectedIssue, setSelectedIssue] = useState<string | null>(null);
   const [comment, setComment] = useState('');
   const [workStatus, setWorkStatus] = useState<'pause' | 'continue'>('pause');
@@ -49,12 +46,13 @@ export function IssueReport({ onBack }: IssueReportProps) {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 pb-6">
       {/* Header */}
       <div className="bg-gradient-to-r from-orange-600 to-red-600 px-6 pt-12 pb-8 rounded-b-[32px] shadow-xl">
-        <button
-          onClick={onBack}
-          className="mb-6 w-12 h-12 bg-white/20 backdrop-blur-lg rounded-xl flex items-center justify-center hover:bg-white/30 transition-colors"
-        >
-          <ArrowLeft className="w-6 h-6 text-white" />
-        </button>
+        <Link to="/technician/task-details">
+          <button
+            className="mb-6 w-12 h-12 bg-white/20 backdrop-blur-lg rounded-xl flex items-center justify-center hover:bg-white/30 transition-colors"
+          >
+            <ArrowLeft className="w-6 h-6 text-white" />
+          </button>
+        </Link>
         <h1 className="text-white mb-2">Report Issue</h1>
         <p className="text-white/80">Alert admin about problems</p>
       </div>

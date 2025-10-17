@@ -2,10 +2,7 @@ import React from 'react';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import { Bell, Building2, MapPin, IndianRupee, Calendar, Wrench, Home, CreditCard, User, Phone, ChevronRight } from 'lucide-react';
-
-interface HomeDashboardProps {
-  onNavigate: (screen: string) => void;
-}
+import { Link } from "react-router-dom";
 
 interface LiftData {
   id: string;
@@ -111,7 +108,7 @@ const CircularProgress = ({ progress, size = 80 }: { progress: number; size?: nu
   );
 };
 
-export function HomeDashboard({ onNavigate }: HomeDashboardProps) {
+export function HomeDashboard() {
   return (
     <div className="min-h-screen bg-[#F8F9FA] pb-24">
       {/* Header */}
@@ -126,13 +123,14 @@ export function HomeDashboard({ onNavigate }: HomeDashboardProps) {
               <h1 className="text-white">Hi, Rajesh!</h1>
             </div>
           </div>
-          <button
-            onClick={() => onNavigate('notifications')}
-            className="relative w-12 h-12 bg-white/20 backdrop-blur-lg rounded-xl flex items-center justify-center hover:bg-white/30 transition-all shadow-lg hover:shadow-xl active:scale-95"
-          >
-            <Bell className="w-6 h-6 text-white" strokeWidth={2} />
-            <div className="absolute top-2 right-2 w-3 h-3 bg-[#FFC107] rounded-full border-2 border-white shadow-lg"></div>
-          </button>
+          <Link to="/notifications">
+            <button
+              className="relative w-12 h-12 bg-white/20 backdrop-blur-lg rounded-xl flex items-center justify-center hover:bg-white/30 transition-all shadow-lg hover:shadow-xl active:scale-95"
+            >
+              <Bell className="w-6 h-6 text-white" strokeWidth={2} />
+              <div className="absolute top-2 right-2 w-3 h-3 bg-[#FFC107] rounded-full border-2 border-white shadow-lg"></div>
+            </button>
+          </Link>
         </div>
       </div>
 
@@ -207,35 +205,39 @@ export function HomeDashboard({ onNavigate }: HomeDashboardProps) {
 
                 {/* Action Buttons */}
                 <div className="grid grid-cols-3 gap-2">
-                  <Button
-                    onClick={() => onNavigate('details')}
-                    className="bg-[#005EB8] hover:bg-[#004A94] rounded-xl h-11 shadow-lg hover:shadow-xl transition-all active:scale-95"
-                  >
-                    Details
-                  </Button>
+                  <Link to="/lift-details">
+                    <Button
+                      className="bg-[#005EB8] hover:bg-[#004A94] rounded-xl h-11 shadow-lg hover:shadow-xl transition-all active:scale-95 w-full"
+                    >
+                      Details
+                    </Button>
+                  </Link>
                   {lift.nextBill ? (
-                    <Button
-                      onClick={() => onNavigate('billing')}
-                      className="bg-[#FFC107] hover:bg-[#FFB300] text-[#333333] rounded-xl h-11 shadow-lg hover:shadow-xl transition-all active:scale-95"
-                    >
-                      Pay Now
-                    </Button>
+                    <Link to="/billing-payments">
+                      <Button
+                        className="bg-[#FFC107] hover:bg-[#FFB300] text-[#333333] rounded-xl h-11 shadow-lg hover:shadow-xl transition-all active:scale-95 w-full"
+                      >
+                        Pay Now
+                      </Button>
+                    </Link>
                   ) : (
-                    <Button
-                      onClick={() => onNavigate('billing')}
-                      variant="outline"
-                      className="border-[#005EB8] text-[#005EB8] hover:bg-[#005EB8]/5 rounded-xl h-11"
-                    >
-                      Billing
-                    </Button>
+                    <Link to="/billing-payments">
+                      <Button
+                        variant="outline"
+                        className="border-[#005EB8] text-[#005EB8] hover:bg-[#005EB8]/5 rounded-xl h-11 w-full"
+                      >
+                        Billing
+                      </Button>
+                    </Link>
                   )}
-                  <Button
-                    onClick={() => onNavigate('services')}
-                    variant="outline"
-                    className="border-[#005EB8] text-[#005EB8] hover:bg-[#005EB8]/5 rounded-xl h-11"
-                  >
-                    Service
-                  </Button>
+                  <Link to="/services-maintenance">
+                    <Button
+                      variant="outline"
+                      className="border-[#005EB8] text-[#005EB8] hover:bg-[#005EB8]/5 rounded-xl h-11 w-full"
+                    >
+                      Service
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -247,48 +249,36 @@ export function HomeDashboard({ onNavigate }: HomeDashboardProps) {
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-[#005EB8]/10 shadow-2xl">
         <div className="max-w-md mx-auto px-6 py-3">
           <div className="flex items-center justify-around">
-            <button className="flex flex-col items-center gap-1 py-2 px-3">
+            <Link to="/home" className="flex flex-col items-center gap-1 py-2 px-3">
               <div className="w-10 h-10 bg-gradient-to-br from-[#005EB8] to-[#0077D4] rounded-xl flex items-center justify-center shadow-lg">
                 <Home className="w-5 h-5 text-white" strokeWidth={2.5} />
               </div>
               <span className="text-xs text-[#005EB8]">Home</span>
-            </button>
-            <button
-              onClick={() => onNavigate('billing')}
-              className="flex flex-col items-center gap-1 py-2 px-3 group"
-            >
+            </Link>
+            <Link to="/billing-payments" className="flex flex-col items-center gap-1 py-2 px-3 group">
               <div className="w-10 h-10 bg-gray-100 rounded-xl flex items-center justify-center group-hover:bg-[#005EB8]/10 transition-colors">
                 <CreditCard className="w-5 h-5 text-[#333333]/50 group-hover:text-[#005EB8] transition-colors" strokeWidth={2} />
               </div>
               <span className="text-xs text-[#333333]/50 group-hover:text-[#005EB8] transition-colors">Billing</span>
-            </button>
-            <button
-              onClick={() => onNavigate('services')}
-              className="flex flex-col items-center gap-1 py-2 px-3 group"
-            >
+            </Link>
+            <Link to="/services-maintenance" className="flex flex-col items-center gap-1 py-2 px-3 group">
               <div className="w-10 h-10 bg-gray-100 rounded-xl flex items-center justify-center group-hover:bg-[#005EB8]/10 transition-colors">
                 <Wrench className="w-5 h-5 text-[#333333]/50 group-hover:text-[#005EB8] transition-colors" strokeWidth={2} />
               </div>
               <span className="text-xs text-[#333333]/50 group-hover:text-[#005EB8] transition-colors">Services</span>
-            </button>
-            <button
-              onClick={() => onNavigate('support')}
-              className="flex flex-col items-center gap-1 py-2 px-3 group"
-            >
+            </Link>
+            <Link to="/complaints-support" className="flex flex-col items-center gap-1 py-2 px-3 group">
               <div className="w-10 h-10 bg-gray-100 rounded-xl flex items-center justify-center group-hover:bg-[#005EB8]/10 transition-colors">
                 <Phone className="w-5 h-5 text-[#333333]/50 group-hover:text-[#005EB8] transition-colors" strokeWidth={2} />
               </div>
               <span className="text-xs text-[#333333]/50 group-hover:text-[#005EB8] transition-colors">Support</span>
-            </button>
-            <button
-              onClick={() => onNavigate('profile')}
-              className="flex flex-col items-center gap-1 py-2 px-3 group"
-            >
+            </Link>
+            <Link to="/profile" className="flex flex-col items-center gap-1 py-2 px-3 group">
               <div className="w-10 h-10 bg-gray-100 rounded-xl flex items-center justify-center group-hover:bg-[#005EB8]/10 transition-colors">
                 <User className="w-5 h-5 text-[#333333]/50 group-hover:text-[#005EB8] transition-colors" strokeWidth={2} />
               </div>
               <span className="text-xs text-[#333333]/50 group-hover:text-[#005EB8] transition-colors">Profile</span>
-            </button>
+            </Link>
           </div>
         </div>
       </div>

@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from '../ui/button';
 import { CheckCircle2, Clock, MapPin, Coffee } from 'lucide-react';
-
-interface SetAvailabilityProps {
-  onContinue: () => void;
-}
+import { Link } from "react-router-dom";
 
 const statusOptions = [
   {
@@ -45,7 +42,7 @@ const statusOptions = [
   },
 ];
 
-export function SetAvailability({ onContinue }: SetAvailabilityProps) {
+export function SetAvailability() {
   const [selectedStatus, setSelectedStatus] = useState<string>('available');
 
   return (
@@ -94,12 +91,13 @@ export function SetAvailability({ onContinue }: SetAvailabilityProps) {
         </div>
 
         {/* Confirm Button */}
-        <Button
-          onClick={onContinue}
-          className="w-full h-16 bg-[#2563eb] hover:bg-[#1e40af] rounded-2xl shadow-xl"
-        >
-          Confirm & Continue
-        </Button>
+        <Link to="/technician-dashboard">
+          <Button
+            className="w-full h-16 bg-[#2563eb] hover:bg-[#1e40af] rounded-2xl shadow-xl"
+          >
+            Confirm & Continue
+          </Button>
+        </Link>
       </div>
     </div>
   );

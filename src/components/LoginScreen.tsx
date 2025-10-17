@@ -4,12 +4,9 @@ import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { Building2, Lock, Phone } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+import { Link } from "react-router-dom";
 
-interface LoginScreenProps {
-  onLogin: () => void;
-}
-
-export function LoginScreen({ onLogin }: LoginScreenProps) {
+export function LoginScreen() {
   const [loginMode, setLoginMode] = useState<'password' | 'otp'>('password');
   const [mobileNumber, setMobileNumber] = useState('');
   const [password, setPassword] = useState('');
@@ -98,12 +95,13 @@ export function LoginScreen({ onLogin }: LoginScreenProps) {
               </div>
             </div>
 
-            <Button
-              onClick={onLogin}
-              className="w-full h-12 bg-[#005EB8] hover:bg-[#004A94] rounded-xl shadow-lg"
-            >
-              Login
-            </Button>
+            <Link to="/home" className="w-full">
+              <Button
+                className="w-full h-12 bg-[#005EB8] hover:bg-[#004A94] rounded-xl shadow-lg"
+              >
+                Login
+              </Button>
+            </Link>
 
             <div className="text-center">
               <button className="text-[#005EB8] hover:underline">

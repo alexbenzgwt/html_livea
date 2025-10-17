@@ -3,12 +3,9 @@ import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';
 import { Building2, Phone } from 'lucide-react';
+import { Link } from "react-router-dom";
 
-interface TechnicianLoginProps {
-  onLogin: () => void;
-}
-
-export function TechnicianLogin({ onLogin }: TechnicianLoginProps) {
+export function TechnicianLogin() {
   const [step, setStep] = useState<'phone' | 'otp'>('phone');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [otp, setOtp] = useState('');
@@ -74,12 +71,13 @@ export function TechnicianLogin({ onLogin }: TechnicianLoginProps) {
                 />
               </div>
 
-              <Button
-                onClick={onLogin}
-                className="w-full h-14 bg-[#2563eb] hover:bg-[#1e40af] rounded-xl shadow-lg"
-              >
-                Login to Dashboard
-              </Button>
+              <Link to="/technician-dashboard">
+                <Button
+                  className="w-full h-14 bg-[#2563eb] hover:bg-[#1e40af] rounded-xl shadow-lg"
+                >
+                  Login to Dashboard
+                </Button>
+              </Link>
 
               <button
                 onClick={() => setStep('phone')}

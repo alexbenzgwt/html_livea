@@ -2,10 +2,7 @@ import React, { useState } from 'react';
 import { Button } from '../ui/button';
 import { Checkbox } from '../ui/checkbox';
 import { ArrowLeft, CheckCircle2, Clock, Camera, Video, Mic, Upload } from 'lucide-react';
-
-interface StageProgressProps {
-  onBack: () => void;
-}
+import { Link } from "react-router-dom";
 
 const stages = [
   {
@@ -40,7 +37,7 @@ const stages = [
   },
 ];
 
-export function StageProgress({ onBack }: StageProgressProps) {
+export function StageProgress() {
   const [expandedStage, setExpandedStage] = useState<number | null>(3);
   const [checkedItems, setCheckedItems] = useState<Record<string, boolean>>({});
 
@@ -48,12 +45,13 @@ export function StageProgress({ onBack }: StageProgressProps) {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 pb-6">
       {/* Header */}
       <div className="bg-gradient-to-r from-[#1e3a8a] to-[#2563eb] px-6 pt-12 pb-8 rounded-b-[32px] shadow-xl">
-        <button
-          onClick={onBack}
-          className="mb-6 w-12 h-12 bg-white/20 backdrop-blur-lg rounded-xl flex items-center justify-center hover:bg-white/30 transition-colors"
-        >
-          <ArrowLeft className="w-6 h-6 text-white" />
-        </button>
+        <Link to="/technician/task-details">
+          <button
+            className="mb-6 w-12 h-12 bg-white/20 backdrop-blur-lg rounded-xl flex items-center justify-center hover:bg-white/30 transition-colors"
+          >
+            <ArrowLeft className="w-6 h-6 text-white" />
+          </button>
+        </Link>
         <h1 className="text-white mb-2">Stage Progress</h1>
         <p className="text-white/80">Track installation milestones</p>
       </div>
@@ -90,12 +88,13 @@ export function StageProgress({ onBack }: StageProgressProps) {
 
                 <div className="text-left">
                   <h3 className="text-gray-800 mb-1">Stage {stage.id}: {stage.name}</h3>
-                  <p className={`${
+                  {/* --- FIX IS HERE --- */}
+                  <p className={
                     stage.status === 'approved' ? 'text-green-600' :
-                    stage.status === 'pending' ? 'text-orange-600' : 'text-gray-500'
-                  }`}>
-                    {stage.status === 'approved' ? 'Approved' :
-                     stage.status === 'pending' ? 'In Progress' : 'Not Started'}
+                    stage.status === 'pending' ? 'text-orange-600' :
+                    'text-gray-500'
+                  }>
+                    {stage.status === 'approved' ? 'Approved' : stage.status === 'pending' ? 'In Progress' : 'Not Started'}
                   </p>
                 </div>
               </div>

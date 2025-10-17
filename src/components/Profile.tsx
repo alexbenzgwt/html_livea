@@ -4,23 +4,20 @@ import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { ArrowLeft, User, Phone, Mail, MapPin, Lock, LogOut, Camera } from 'lucide-react';
+import { Link } from "react-router-dom";
 
-interface ProfileProps {
-  onBack: () => void;
-  onLogout: () => void;
-}
-
-export function Profile({ onBack, onLogout }: ProfileProps) {
+export function Profile() {
   return (
     <div className="min-h-screen bg-[#F8F9FA] pb-6">
       {/* Header */}
       <div className="bg-gradient-to-r from-[#005EB8] to-[#0077D4] px-6 pt-12 pb-24 rounded-b-[32px] shadow-lg">
-        <button
-          onClick={onBack}
-          className="mb-6 w-10 h-10 bg-white/20 backdrop-blur-lg rounded-xl flex items-center justify-center hover:bg-white/30 transition-colors"
-        >
-          <ArrowLeft className="w-5 h-5 text-white" />
-        </button>
+        <Link to="/home">
+          <button
+            className="mb-6 w-10 h-10 bg-white/20 backdrop-blur-lg rounded-xl flex items-center justify-center hover:bg-white/30 transition-colors"
+          >
+            <ArrowLeft className="w-5 h-5 text-white" />
+          </button>
+        </Link>
         <h1 className="text-white mb-2">Profile & Settings</h1>
         <p className="text-white/80">Manage your account information</p>
       </div>
@@ -128,14 +125,15 @@ export function Profile({ onBack, onLogout }: ProfileProps) {
             Save Changes
           </Button>
           
-          <Button
-            onClick={onLogout}
-            variant="outline"
-            className="w-full h-12 border-red-500 text-red-500 hover:bg-red-50 rounded-xl"
-          >
-            <LogOut className="w-5 h-5 mr-2" />
-            Logout
-          </Button>
+          <Link to="/">
+            <Button
+              variant="outline"
+              className="w-full h-12 border-red-500 text-red-500 hover:bg-red-50 rounded-xl"
+            >
+              <LogOut className="w-5 h-5 mr-2" />
+              Logout
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

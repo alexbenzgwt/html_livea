@@ -1,10 +1,7 @@
 import React from 'react';
 import { Badge } from '../ui/badge';
 import { ClipboardList, Phone, Package, MessageSquare, CheckCircle2, Clock, FileText } from 'lucide-react';
-
-interface TechnicianDashboardProps {
-  onNavigate: (screen: string) => void;
-}
+import { Link } from "react-router-dom";
 
 const quickAccessCards = [
   {
@@ -12,32 +9,32 @@ const quickAccessCards = [
     title: 'My Tasks',
     icon: ClipboardList,
     color: 'from-blue-500 to-blue-600',
-    screen: 'tasklist',
+    screen: '/technician/task-list',
   },
   {
     id: 'calls',
     title: 'Service Calls',
     icon: Phone,
     color: 'from-green-500 to-green-600',
-    screen: 'tasklist',
+    screen: '/technician/task-list',
   },
   {
     id: 'materials',
     title: 'Material Requests',
     icon: Package,
     color: 'from-orange-500 to-orange-600',
-    screen: 'materialrequest',
+    screen: '/technician/material-request',
   },
   {
     id: 'chat',
     title: 'Chat Support',
     icon: MessageSquare,
     color: 'from-purple-500 to-purple-600',
-    screen: 'chat',
+    screen: '/technician/chat-support',
   },
 ];
 
-export function TechnicianDashboard({ onNavigate }: TechnicianDashboardProps) {
+export function TechnicianDashboard() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 pb-6">
       {/* Header */}
@@ -56,16 +53,16 @@ export function TechnicianDashboard({ onNavigate }: TechnicianDashboardProps) {
           <h3 className="text-gray-700 mb-4">Quick Access</h3>
           <div className="grid grid-cols-2 gap-4">
             {quickAccessCards.map((card) => (
-              <button
-                key={card.id}
-                onClick={() => onNavigate(card.screen)}
-                className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all active:scale-95"
-              >
-                <div className={`w-16 h-16 bg-gradient-to-br ${card.color} rounded-2xl flex items-center justify-center mb-4 shadow-lg`}>
-                  <card.icon className="w-8 h-8 text-white" strokeWidth={2} />
+              <Link to={card.screen} key={card.id}>
+                <div
+                  className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all active:scale-95"
+                >
+                  <div className={`w-16 h-16 bg-gradient-to-br ${card.color} rounded-2xl flex items-center justify-center mb-4 shadow-lg`}>
+                    <card.icon className="w-8 h-8 text-white" strokeWidth={2} />
+                  </div>
+                  <h3 className="text-gray-800">{card.title}</h3>
                 </div>
-                <h3 className="text-gray-800">{card.title}</h3>
-              </button>
+              </Link>
             ))}
           </div>
         </div>

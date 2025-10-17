@@ -6,10 +6,7 @@ import { Textarea } from '../ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
 import { Badge } from '../ui/badge';
 import { ArrowLeft, Package, Plus, Minus, Send, Clock, CheckCircle2, Truck } from 'lucide-react';
-
-interface MaterialRequestProps {
-  onBack: () => void;
-}
+import { Link } from "react-router-dom";
 
 const previousRequests = [
   {
@@ -41,7 +38,7 @@ const previousRequests = [
   },
 ];
 
-export function MaterialRequest({ onBack }: MaterialRequestProps) {
+export function MaterialRequest() {
   const [material, setMaterial] = useState('');
   const [quantity, setQuantity] = useState(1);
   const [remarks, setRemarks] = useState('');
@@ -50,12 +47,13 @@ export function MaterialRequest({ onBack }: MaterialRequestProps) {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 pb-6">
       {/* Header */}
       <div className="bg-gradient-to-r from-[#1e3a8a] to-[#2563eb] px-6 pt-12 pb-8 rounded-b-[32px] shadow-xl">
-        <button
-          onClick={onBack}
-          className="mb-6 w-12 h-12 bg-white/20 backdrop-blur-lg rounded-xl flex items-center justify-center hover:bg-white/30 transition-colors"
-        >
-          <ArrowLeft className="w-6 h-6 text-white" />
-        </button>
+        <Link to="/technician/task-details">
+          <button
+            className="mb-6 w-12 h-12 bg-white/20 backdrop-blur-lg rounded-xl flex items-center justify-center hover:bg-white/30 transition-colors"
+          >
+            <ArrowLeft className="w-6 h-6 text-white" />
+          </button>
+        </Link>
         <h1 className="text-white mb-2">Material Request</h1>
         <p className="text-white/80">Request parts and materials</p>
       </div>
