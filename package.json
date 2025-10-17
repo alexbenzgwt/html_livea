@@ -58,6 +58,6 @@
             "predeploy": "npm run build",
   "deploy": "gh-pages -d build"
       },
-      "homepage": "https://github.com/godavariwavetech/react_test_live"
+      "homepage": "https://godavariwavetech.github.io/react_test_live"
 
   }
